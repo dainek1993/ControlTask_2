@@ -16,7 +16,7 @@ namespace ControlTask_2
             Size = GetBytes();
         }
         public string Extension { get; private set; }
-        public int Size { get; private set; }
+        public long Size { get; private set; }
         private string sizeStr;
         public virtual void Print()
         {
@@ -24,17 +24,17 @@ namespace ControlTask_2
             Console.WriteLine("Size: " + Size);
         }
 
-        private int GetBytes()
+        private long GetBytes()
         {
-            int digit = 0;
+            long digit = 0;
             char[] sizeChars = sizeStr.Split('B')[0].ToCharArray();
             if (char.IsDigit(sizeChars[sizeChars.Length - 1]) == false)
             {
                 sizeChars[sizeChars.Length - 1] = '\0';
                 
             }
-            digit = int.Parse(new string(sizeChars));
-            switch (sizeStr[sizeStr.Length - 1])
+            digit = long.Parse(new string(sizeChars));
+            switch (sizeStr[sizeStr.Length - 2])
             {
                 case 'G':
                     digit *= 1000000000;
