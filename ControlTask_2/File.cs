@@ -13,27 +13,27 @@ namespace ControlTask_2
             string baseFileData = fileDescription.Split(';')[0];
             Extension = baseFileData.Split('(')[0];
             sizeStr = baseFileData.Split('(')[1].Split(')')[0];
-            Size = GetBytes();
+            SizeInBytes = GetBytes();
         }
         public string Extension { get; private set; }
-        public long Size { get; private set; }
+        public long SizeInBytes { get; private set; }
         private string sizeStr;
         public virtual void Print()
         {
             Console.WriteLine("Extension: " + Extension);
-            Console.WriteLine("Size: " + Size);
+            Console.WriteLine("Size: " + SizeInBytes);
         }
 
         private long GetBytes()
         {
             long digit = 0;
-            char[] sizeChars = sizeStr.Split('B')[0].ToCharArray();
-            if (char.IsDigit(sizeChars[sizeChars.Length - 1]) == false)
+            char[] sizeInChars = sizeStr.Split('B')[0].ToCharArray();
+            if (char.IsDigit(sizeInChars[sizeInChars.Length - 1]) == false)
             {
-                sizeChars[sizeChars.Length - 1] = '\0';
+                sizeInChars[sizeInChars.Length - 1] = '\0';
                 
             }
-            digit = long.Parse(new string(sizeChars));
+            digit = long.Parse(new string(sizeInChars));
             switch (sizeStr[sizeStr.Length - 2])
             {
                 case 'G':
@@ -95,13 +95,8 @@ namespace ControlTask_2
             resolution = fileeDescription.Split(';')[1];
         }
         private string resolution;
-        public string Resolution
-        {
-            get
-            {
-                return resolution;   
-            }
-        }
+
+        public string Resolution => resolution;
 
         public override void Print()
         {
